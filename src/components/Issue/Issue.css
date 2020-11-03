@@ -1,0 +1,16 @@
+.Issue {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 15px;
+    /* background-color: ; */
+}
+
+.IssueLabel {
+    padding: 0 7px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    border: 1px solid transparent;
+    border-radius: 2em;
+    display: inline-block;
+    text-decoration: none;
+}
