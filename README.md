@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# **GitHub Issues** <!-- omit in toc -->
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A repository to practice React, React-Hooks, React-Router React-Bootstrap, and React-markdown.
 
-## Available Scripts
+- [**General**](#general)
+- [**How it works**](#how-it-works)
+- [**Requirements**](#requirements)
+- [**What I Learned**](#what-i-learned)
+- [**Still Todo**](#still-todo)
 
-In the project directory, you can run:
+## **General**
 
-### `npm start`
+The React GitHub Issues App was created using the following languages and technologies:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<img src="https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
+<img src="https://img.shields.io/badge/bootstrap%20-%23563D7C.svg?&style=for-the-badge&logo=bootstrap&logoColor=white"/>
+<img src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
+<img src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/>
+<img src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## **How it works**
 
-### `npm test`
+This app uses the React-Router package in connection with the GitHub issues API to analyze the URL and display different issue components depending on user input.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+In App.js:
+```JSX
+    <Route exact path="/issues" component={IssueList}/>
+    <Route path="/labels/:name" component={IssuesByLabel}/>
+    <Route path="/issues/detail/:number" component={IssueDetail}/>
+```
 
-### `npm run build`
+In the issueDetail Component:
+```JavaScript
+    const {number} = useParams();
+    const [detailData, setDetailData] = useState(null);
+    const loadIssueDetail = () => {
+        fetch(`https://api.github.com/repos/facebook/create-react-app/issues/${number}`)
+            .then(res => res.json())
+            .then(data => setDetailData(data))
+    }
+    useEffect(() => {
+        loadIssueDetail();
+    }, [])
+```
+<!-- 
+## **How to Use**
+* Add a gif
+ -->
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## **Requirements**
+The Requirements for this exercise were as follows: 
+* Using our newfound React-knowledge, try to recreate the github issues page as best as possible.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## **What I Learned**
+* Implementation of React Hooks
+  * Using functional vs. class components.
+    * Prior to this exercise, the course had only taught us to use class components.
+    * Although they are extremely similar, I lean towards using hooks for their conciseness.
+* Using the React-Router package
+  * Prior to this exercise, there was a glaring similarity between all of the react apps the class was tasked with creating...they were all one page.
+    * React-Router solves this problem by allowing us to create different routes (similar to how we did on the backend) that will link the user to different components.
+* Using the React-Markdown package
+  * The GitHub issues API returned a multitude of data when called. For each individual issue detail the API returned a large string of text that upon investigation had some markdown markup already included.
+  * To take advantage of this styling I installed/used React-Markdown.
+  * This library provides the React component to render the Markdown markup.
+```JSX
+<ReactMarkdown source={detailData.body} />
+```
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## **Still Todo**
+* Implement a backend using express
+* Continue to style the components
