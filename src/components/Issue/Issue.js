@@ -6,6 +6,7 @@ import Badge from "react-bootstrap/Badge";
 import Row from "react-bootstrap/Row";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
 
 const mathFunction = (backgroundColor) => {
     let r = (parseInt(backgroundColor.substring(0, 2), 16)* 0.299)
@@ -48,11 +49,9 @@ export default function Issue(props) {
                     <Badge variant="success" className="badge-pill ml-2" style={{width: '30px'}}>
                         <FontAwesomeIcon icon={faExclamationCircle} size="lg" style={{marginTop: '2px'}}/>
                     </Badge>
-                    <a href={`${props.data.html_url}`} className="ml-2" style={{color: "black"}}>
-                        <h6 className="font-weight-bold">{props.data.title}</h6>
-                    </a>
+                    <Link to={`issues/detail/${props.data.number}`}><h6 className="font-weight-bold ml-2" style={{color: "black"}}>{props.data.title}</h6></Link>
                     {props.data.labels.map((label, index)=>{
-                        return <a className="IssueLabel ml-2" href={`/labels/:${props.data.name}`} key={index} style={{
+                        return <a className="IssueLabel ml-2" href={`/labels/${props.data.name}`} key={index} style={{
                             backgroundColor: `#${label.color}`,
                             color: `#${ (mathFunction(label.color) ? '000000' : 'ffffff')}`
                         }}>
