@@ -52,7 +52,7 @@ export default function Issue(props) {
                         <h6 className="font-weight-bold">{props.data.title}</h6>
                     </a>
                     {props.data.labels.map((label, index)=>{
-                        return <a className="IssueLabel ml-2" href={`${props.data.html_url}`} key={index} style={{
+                        return <a className="IssueLabel ml-2" href={`/labels/:${props.data.name}`} key={index} style={{
                             backgroundColor: `#${label.color}`,
                             color: `#${ (mathFunction(label.color) ? '000000' : 'ffffff')}`
                         }}>
