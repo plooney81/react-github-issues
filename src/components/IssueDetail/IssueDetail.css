@@ -33,6 +33,25 @@
     line-height: 1.25!important;
 }
 
+.openTag {
+    margin-right: 8px;
+    color: #fff;
+    background-color: #28a745;
+    border: 1px solid transparent;
+    display: inline-block;
+    padding: 5px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 2em;
+}
+
+/* .octicon-issue-opened{
+    color: #fff!important;
+} */
+
 .userPic {
     border-radius: 50%;
 }
@@ -41,4 +60,12 @@
     max-width: 100%!important;
     color: #24292e;
     font-size: 14px!important;
+}
+
+.detailsBodyTitle {
+    background-color: #f6f8fa;
+    margin: 0;
+    height: 41px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 }
