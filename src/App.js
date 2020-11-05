@@ -4,6 +4,7 @@ import './App.css';
 import IssueList from './components/IssueList/IssueList';
 import IssuesByLabel from './components/IssuesByLabel/IssuesByLabel';
 import IssueDetail from './components/IssueDetail/IssueDetail';
+import User from './components/User/User';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         : (<li><button onClick={()=> {setLoggedIn(true)}}>Log In</button></li>)
         }
       </ul>
+      <User style={{width: '95%'}}></User>
       <div className="App">
         <Route exact path="/home">
           <h1>Home</h1>

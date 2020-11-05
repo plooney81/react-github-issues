@@ -48,9 +48,13 @@
     border-radius: 2em;
 }
 
-/* .octicon-issue-opened{
-    color: #fff!important;
-} */
+.markdown {
+    max-width: 1200px;
+}
+
+.markdown img{
+    max-width: 100%;
+}
 
 .userPic {
     border-radius: 50%;

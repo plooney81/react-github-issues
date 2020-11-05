@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react';
 import { Container} from 'react-bootstrap';
 import './IssueDetail.css';
 
-import ReactMarkdown from "react-markdown";
+import TimeSince from '../../lib/TimeSince';
+
+import ReactMarkdown from "react-markdown/with-html";
 
 export default function IssueDetail() {
     const {number} = useParams();
@@ -33,14 +35,15 @@ export default function IssueDetail() {
                             </svg>
                             <span className="ml-1">Open</span>
                         </span>
-                        <p style={{paddingTop: "4px"}}>{detailData.user.login} <span style={{color: "#586069"}}>opened this issue</span></p>
+            <p style={{paddingTop: "4px"}}>{detailData.user.login} <span style={{color: "#586069"}}>opened this issue {TimeSince(detailData.created_at)}</span></p>
                     </div>
-                    <div className="detailsBody border rounded">
+                    <hr/>
+                    <div className="detailsBody border rounded mt-3">
                         <h3 className="detailsBodyTitle">
                             <img className="userPic ml-3" src={detailData.user.avatar_url} alt={`${detailData.user.login}'s profile`} style={{height: '20px', width: '20px'}}></img>
                             <span className="userLogin ml-3">{detailData.user.login}</span>
                         </h3>
-                        <ReactMarkdown className="border-top p-3" source={detailData.body} />
+                        <ReactMarkdown className="border-top p-3 markdown" source={detailData.body} allowDangerousHtml={true}/>
                     </div>
                 </div>
             )}
